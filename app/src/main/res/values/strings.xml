@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Kalkulator</string>
+
+    <string-array name="operator_aritmatik">
+        <item>Tambah</item>
+        <item>Kurang</item>
+        <item>Kali</item>
+        <item>Bagi</item>
+    </string-array>
+</resources>
