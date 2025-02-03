@@ -1,6 +1,7 @@
 package com.example.kalkulator;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -30,9 +31,21 @@ public class MainActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent in = new Intent(MainActivity.this , Calculator.class);
-                in.putExtra("nama",edUsername.getText().toString());
-                startActivity(in);
+                if(edUsername.getText().toString().equals("admin") && edPassword.getText().toString().equals("admin")){
+                    // simpan ke shared pref
+                    // intent ke main menu calculator
+                    // finish
+                    SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("username",edUsername.getText().toString());
+                    editor.apply();
+
+                    Intent in = new Intent(MainActivity.this, Calculator.class);
+                    startActivity(in);
+                    finish();
+                }else{
+                    Toast.makeText(MainActivity.this, "login gagal", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

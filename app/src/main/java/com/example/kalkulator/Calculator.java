@@ -1,6 +1,7 @@
 package com.example.kalkulator;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -52,8 +53,10 @@ public class Calculator extends AppCompatActivity {
             }
         });
 
-        Intent intent = getIntent();
-        String name = intent.getStringExtra("nama");
-        tvName.setText("welcome "+name);
+        // untuk get dari shared pref
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
+        String username = pref.getString("username", "kosong"); // getting String
+        tvName.setText("welcome : "+username);
+
     }
 }
